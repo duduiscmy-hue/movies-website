@@ -1,19 +1,13 @@
-import fs from "fs";
-import path from "path";
+import moviesData from './movies.json';
 import { Movie } from "./types";
 
-const DATA_PATH = path.join(
-  process.env.HOME || process.env.USERPROFILE || "/Users/chendudu",
-  "Downloads",
-  "movies.json"
-);
+
 
 let cached: Movie[] | null = null;
 
 function loadData(): Movie[] {
   if (cached) return cached;
-  const raw = fs.readFileSync(DATA_PATH, "utf-8");
-  cached = JSON.parse(raw) as Movie[];
+  cached = moviesData as Movie[];
   return cached;
 }
 
