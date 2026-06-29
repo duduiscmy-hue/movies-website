@@ -2,6 +2,17 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getMovieById } from "@/lib/data";
 
+import { loadData } from "@/lib/data";
+
+export async function generateStaticParams() {
+  const movies = loadData();
+  return movies.map((movie) => ({
+    id: String(movie.id),
+  }));
+}
+
+
+
 interface Props {
   params: Promise<{ id: string }>;
 }
